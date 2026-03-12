@@ -1,8 +1,10 @@
 # mcp-sessions
 
+Search and browse Claude Code conversation history across all your projects.
+
 [Русская версия](README.ru.md)
 
-MCP server for searching Claude Code conversation history across all projects.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## Features
 

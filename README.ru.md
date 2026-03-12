@@ -1,8 +1,10 @@
 # mcp-sessions
 
+Поиск и просмотр истории переписки Claude Code во всех ваших проектах.
+
 [English version](README.md)
 
-MCP-сервер для поиска по истории переписки Claude Code во всех проектах.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## Возможности
 
