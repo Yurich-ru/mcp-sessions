@@ -1,28 +1,30 @@
 # mcp-sessions
 
+MCP-сервер для поиска по истории переписки Claude Code во всех проектах.
+
 MCP server for searching Claude Code conversation history across all projects.
 
-## Features
+## Возможности / Features
 
-- **Cross-project search** — search sessions in any project, not just the current one
-- **Smart project resolution** — use short names (`myapp`), full paths, or `*` for all projects
-- **Full-text search** — AND-matching across sessions with snippet context
-- **Git integration** — see commits made during a session
-- **System tag filtering** — strips Claude Code internal tags from displayed content
+- **Кросс-проектный поиск** — ищите в сессиях любого проекта, не только текущего
+- **Умное определение проекта** — короткие имена (`myapp`), полные пути или `*` для всех проектов
+- **Полнотекстовый поиск** — AND-сопоставление слов с контекстом вокруг совпадений
+- **Интеграция с Git** — просмотр коммитов, сделанных во время сессии
+- **Фильтрация системных тегов** — убирает внутренние теги Claude Code из результатов
 
-## Tools
+## Инструменты / Tools
 
-| Tool | Description |
+| Инструмент | Описание |
 |---|---|
-| `sessions_projects` | List all projects with session history |
-| `sessions_list` | List recent sessions (by project) |
-| `sessions_search` | Full-text search with snippets |
-| `sessions_by_file` | Find sessions mentioning a file |
-| `session_summary` | Session overview: dates, messages, files |
-| `session_diff` | Git commits during a session |
-| `session_messages` | Read raw messages from a session |
+| `sessions_projects` | Список всех проектов с историей сессий |
+| `sessions_list` | Последние сессии (по проекту) |
+| `sessions_search` | Полнотекстовый поиск со сниппетами |
+| `sessions_by_file` | Поиск сессий, в которых упоминается файл |
+| `session_summary` | Обзор сессии: даты, сообщения, файлы |
+| `session_diff` | Git-коммиты за время сессии |
+| `session_messages` | Чтение сообщений из сессии |
 
-## Install
+## Установка / Install
 
 ```bash
 git clone https://github.com/yurich-ru/mcp-sessions.git
@@ -31,16 +33,16 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-The setup script will print the JSON config to add to your `~/.claude.json`.
+Скрипт выведет JSON-конфигурацию, которую нужно добавить в `~/.claude.json`.
 
-### Manual setup
+### Ручная установка / Manual setup
 
 ```bash
 python3 -m venv venv
 ./venv/bin/pip install -r requirements.txt
 ```
 
-Add to `~/.claude.json`:
+Добавьте в `~/.claude.json`:
 
 ```json
 {
@@ -54,32 +56,32 @@ Add to `~/.claude.json`:
 }
 ```
 
-Restart Claude Code.
+Перезапустите Claude Code.
 
-## Usage examples
+## Примеры использования / Usage examples
 
-From Claude Code, the tools are available automatically:
+Инструменты доступны автоматически из Claude Code:
 
-- **"Show my recent sessions"** → `sessions_list`
-- **"Search our conversations about auth"** → `sessions_search(query="auth")`
-- **"Find discussions about auth in project backend"** → `sessions_search(query="auth", project="backend")`
-- **"Search all projects for deploy issues"** → `sessions_search(query="deploy", project="*")`
-- **"What projects have session history?"** → `sessions_projects`
+- **«Покажи последние сессии»** → `sessions_list`
+- **«Найди в нашей переписке про авторизацию»** → `sessions_search(query="авторизация")`
+- **«Поищи обсуждение деплоя в проекте backend»** → `sessions_search(query="deploy", project="backend")`
+- **«Поищи во всех проектах про миграции»** → `sessions_search(query="миграция", project="*")`
+- **«Какие проекты есть?»** → `sessions_projects`
 
-## Environment variables
+## Переменные окружения / Environment variables
 
-| Variable | Default | Description |
+| Переменная | По умолчанию | Описание |
 |---|---|---|
-| `CLAUDE_SESSIONS_DIR` | `~/.claude/projects` | Directory where Claude Code stores session files |
+| `CLAUDE_SESSIONS_DIR` | `~/.claude/projects` | Директория с файлами сессий Claude Code |
 
-## How it works
+## Как это работает / How it works
 
-Claude Code stores conversation history as JSONL files in `~/.claude/projects/<project-name>/`. Each project directory name is derived from the filesystem path (e.g., `/home/user/myapp` → `-home-user-myapp`).
+Claude Code хранит историю переписки в JSONL-файлах в `~/.claude/projects/<имя-проекта>/`. Имя директории проекта формируется из пути (например, `/home/user/myapp` → `-home-user-myapp`).
 
-This server reads those files and provides search/browse tools via the MCP protocol.
+Сервер читает эти файлы и предоставляет инструменты поиска и просмотра через протокол MCP.
 
-## Requirements
+## Требования / Requirements
 
 - Python 3.10+
-- `mcp` package (installed automatically)
-- Claude Code (session files must exist in `~/.claude/projects/`)
+- Пакет `mcp` (устанавливается автоматически)
+- Claude Code (файлы сессий должны существовать в `~/.claude/projects/`)
